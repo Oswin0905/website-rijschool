@@ -1,0 +1,1626 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RijPro | Jouw Rijschool voor Succes</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =================== RESET & BASE =================== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #0f172a;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    /* =================== CSS VARIABLES =================== */
+    :root {
+      --primary: #0057FF;
+      --primary-dark: #0040CC;
+      --primary-light: #e8f0ff;
+      --accent: #00C875;
+      --accent-dark: #00a85e;
+      --dark: #0f172a;
+      --dark-2: #1e293b;
+      --dark-3: #334155;
+      --mid: #64748b;
+      --light: #f8fafc;
+      --border: #e2e8f0;
+      --white: #ffffff;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --shadow: 0 4px 24px rgba(0,87,255,0.10);
+      --shadow-lg: 0 16px 48px rgba(0,87,255,0.14);
+    }
+
+    /* =================== NAV =================== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(226,232,240,0.8);
+      transition: background 0.3s;
+    }
+    .nav-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+    .nav-logo .logo-dot {
+      width: 10px; height: 10px;
+      background: var(--primary);
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .nav-logo span { color: var(--primary); }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      list-style: none;
+    }
+    .nav-links a {
+      padding: 8px 14px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--dark-3);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover { color: var(--primary); background: var(--primary-light); }
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 22px;
+      border-radius: var(--radius-sm);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+      transition: all 0.22s;
+      white-space: nowrap;
+      font-family: 'Inter', sans-serif;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: var(--white);
+    }
+    .btn-primary:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,87,255,0.3); }
+    .btn-outline {
+      background: transparent;
+      color: var(--dark);
+      border: 1.5px solid var(--border);
+    }
+    .btn-outline:hover { border-color: var(--primary); color: var(--primary); background: var(--primary-light); }
+    .btn-lg {
+      padding: 15px 32px;
+      font-size: 1rem;
+      border-radius: 12px;
+    }
+    .btn-xl {
+      padding: 18px 40px;
+      font-size: 1.05rem;
+      border-radius: 14px;
+    }
+    .btn-accent {
+      background: var(--accent);
+      color: var(--white);
+    }
+    .btn-accent:hover { background: var(--accent-dark); transform: translateY(-1px); box-shadow: 0 6px 20px rgba(0,200,117,0.35); }
+    .hamburger { display: none; cursor: pointer; background: none; border: none; padding: 4px; }
+    .hamburger span {
+      display: block;
+      width: 22px; height: 2px;
+      background: var(--dark);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: 0.3s;
+    }
+
+    /* =================== HERO =================== */
+    .hero {
+      min-height: 100vh;
+      padding-top: 68px;
+      background: linear-gradient(135deg, #f0f5ff 0%, #f8fafc 40%, #e8f5f0 100%);
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      background: radial-gradient(circle, rgba(0,87,255,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; left: -100px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,200,117,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 24px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 100px;
+      padding: 6px 16px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--primary);
+      margin-bottom: 24px;
+      box-shadow: 0 2px 8px rgba(0,87,255,0.08);
+    }
+    .hero-badge .dot { width: 6px; height: 6px; background: var(--accent); border-radius: 50%; }
+    .hero h1 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -1.5px;
+      color: var(--dark);
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight {
+      color: var(--primary);
+      position: relative;
+      display: inline-block;
+    }
+    .hero h1 .highlight::after {
+      content: '';
+      position: absolute;
+      bottom: 2px; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      border-radius: 2px;
+      opacity: 0.4;
+    }
+    .hero-sub {
+      font-size: 1.1rem;
+      line-height: 1.65;
+      color: var(--mid);
+      margin-bottom: 36px;
+      max-width: 480px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+    }
+    .hero-trust {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-trust .stars {
+      display: flex;
+      gap: 2px;
+      color: #f59e0b;
+      font-size: 1.1rem;
+    }
+    .hero-trust .trust-text {
+      font-size: 0.85rem;
+      color: var(--mid);
+    }
+    .hero-trust .trust-text strong {
+      color: var(--dark);
+      font-weight: 700;
+    }
+    .trust-divider {
+      width: 1px; height: 32px;
+      background: var(--border);
+    }
+    /* Hero visual */
+    .hero-visual {
+      position: relative;
+    }
+    .hero-card-main {
+      background: var(--white);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+    }
+    .hero-img-placeholder {
+      width: 100%;
+      aspect-ratio: 4/3;
+      background: linear-gradient(135deg, #1e293b 0%, #0057FF 50%, #0f172a 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-img-placeholder::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 30% 50%, rgba(0,87,255,0.4) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(0,200,117,0.2) 0%, transparent 40%);
+    }
+    .hero-car-icon {
+      font-size: 5rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 8px 24px rgba(0,0,0,0.3));
+    }
+    .hero-road {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 80px;
+      background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+    }
+    .hero-card-overlay {
+      position: absolute;
+      bottom: 16px; left: 16px; right: 16px;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(8px);
+      border-radius: 14px;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .hero-card-overlay .stat { text-align: center; }
+    .hero-card-overlay .stat .num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -0.5px;
+    }
+    .hero-card-overlay .stat .lbl {
+      font-size: 0.72rem;
+      color: var(--mid);
+      font-weight: 500;
+    }
+    .stat-divider { width: 1px; height: 36px; background: var(--border); }
+    /* Floating badges */
+    .float-badge {
+      position: absolute;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 10px 14px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      animation: float 3s ease-in-out infinite;
+      z-index: 2;
+    }
+    .float-badge.badge-1 { top: -16px; right: 20px; animation-delay: 0s; }
+    .float-badge.badge-2 { bottom: 90px; left: -20px; animation-delay: 1.5s; }
+    .float-badge .badge-icon { font-size: 1.1rem; }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* =================== STATS BAR =================== */
+    .stats-bar {
+      background: var(--dark);
+      padding: 28px 24px;
+    }
+    .stats-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: center;
+    }
+    .stat-item {
+      text-align: center;
+      color: var(--white);
+    }
+    .stat-item .num {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--white);
+    }
+    .stat-item .num span { color: var(--accent); }
+    .stat-item .lbl { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+    .stat-divider-v { width: 1px; height: 48px; background: #334155; margin: 0 auto; }
+
+    /* =================== SECTIONS =================== */
+    section { padding: 100px 24px; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--primary);
+      margin-bottom: 16px;
+    }
+    .section-label::before {
+      content: '';
+      width: 20px; height: 2px;
+      background: var(--primary);
+      border-radius: 2px;
+    }
+    .section-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+      font-weight: 800;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+    .section-title .accent { color: var(--primary); }
+    .section-sub {
+      font-size: 1.05rem;
+      line-height: 1.65;
+      color: var(--mid);
+      max-width: 520px;
+    }
+
+    /* =================== SERVICES =================== */
+    .services { background: var(--light); }
+    .services-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 32px 28px;
+      border: 1.5px solid var(--border);
+      transition: all 0.3s;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+      transform-origin: left;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: transparent; }
+    .service-card:hover::before { transform: scaleX(1); }
+    .service-icon {
+      width: 56px; height: 56px;
+      background: var(--primary-light);
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+    .service-card:hover .service-icon { background: var(--primary); filter: brightness(1.2); }
+    .service-card h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+    .service-card p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; margin-bottom: 20px; }
+    .service-price {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .service-badge {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.5px;
+    }
+
+    /* =================== HOW IT WORKS =================== */
+    .how-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+    .step {
+      display: flex;
+      gap: 20px;
+      padding: 24px 0;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      left: 21px;
+      top: 64px;
+      bottom: 0;
+      width: 2px;
+      background: linear-gradient(180deg, var(--primary) 0%, var(--border) 100%);
+    }
+    .step-num {
+      width: 44px; height: 44px;
+      flex-shrink: 0;
+      background: var(--primary);
+      color: white;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.9rem;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative;
+      z-index: 1;
+    }
+    .step-content h4 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+    .step-content p { font-size: 0.9rem; color: var(--mid); line-height: 1.6; }
+    .how-visual {
+      background: var(--dark);
+      border-radius: 24px;
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .how-visual::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(0,87,255,0.3) 0%, transparent 70%);
+    }
+    .how-visual::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 250px; height: 250px;
+      background: radial-gradient(circle, rgba(0,200,117,0.2) 0%, transparent 70%);
+    }
+    .how-visual-content { position: relative; z-index: 1; }
+    .how-visual h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 8px;
+    }
+    .how-visual p { color: #94a3b8; font-size: 0.9rem; margin-bottom: 28px; }
+    .proefles-form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .form-input {
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      transition: border 0.2s;
+      width: 100%;
+    }
+    .form-input:focus { outline: none; border-color: var(--primary); background: rgba(255,255,255,0.1); }
+    .form-input::placeholder { color: #64748b; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-select {
+      background: rgba(255,255,255,0.06);
+      border: 1.5px solid rgba(255,255,255,0.12);
+      border-radius: 10px;
+      padding: 13px 16px;
+      color: white;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      width: 100%;
+      cursor: pointer;
+      -webkit-appearance: none;
+    }
+    .form-select option { background: #1e293b; color: white; }
+    .form-select:focus { outline: none; border-color: var(--primary); }
+
+    /* =================== REVIEWS =================== */
+    .reviews { background: var(--light); }
+    .reviews-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+    .reviews-score {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 16px;
+      padding: 20px 28px;
+      flex-shrink: 0;
+    }
+    .score-big {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 3.2rem;
+      font-weight: 800;
+      color: var(--dark);
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+    .score-details .stars { color: #f59e0b; font-size: 1.1rem; margin-bottom: 4px; }
+    .score-details p { font-size: 0.82rem; color: var(--mid); }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .review-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 28px;
+      border: 1.5px solid var(--border);
+      transition: all 0.25s;
+    }
+    .review-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .review-top {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+    .review-avatar {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1rem;
+      color: white;
+      flex-shrink: 0;
+    }
+    .review-meta .name { font-weight: 700; font-size: 0.9rem; color: var(--dark); }
+    .review-meta .stars { color: #f59e0b; font-size: 0.85rem; }
+    .review-meta .date { font-size: 0.78rem; color: var(--mid); }
+    .review-text { font-size: 0.88rem; color: var(--dark-3); line-height: 1.65; }
+    .review-tag {
+      display: inline-block;
+      background: var(--primary-light);
+      color: var(--primary);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 100px;
+      margin-top: 14px;
+    }
+
+    /* =================== PRICING =================== */
+    .pricing-inner { text-align: center; }
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 56px;
+      align-items: start;
+    }
+    .pricing-card {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 36px 28px;
+      text-align: left;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .pricing-card.featured {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+      transform: scale(1.03);
+    }
+    .pricing-card.featured:hover { transform: scale(1.03) translateY(-4px); }
+    .pricing-popular {
+      position: absolute;
+      top: -1px; left: 50%; transform: translateX(-50%);
+      background: var(--accent);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 5px 16px;
+      border-radius: 0 0 10px 10px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .pricing-plan {
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 8px;
+    }
+    .pricing-card.featured .pricing-plan { color: rgba(255,255,255,0.7); }
+    .pricing-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 4px;
+      color: var(--dark);
+    }
+    .pricing-card.featured .pricing-price { color: white; }
+    .pricing-price sup { font-size: 1.4rem; vertical-align: top; margin-top: 8px; }
+    .pricing-per { font-size: 0.8rem; color: var(--mid); margin-bottom: 24px; }
+    .pricing-card.featured .pricing-per { color: rgba(255,255,255,0.7); }
+    .pricing-divider { border: none; border-top: 1.5px solid var(--border); margin: 24px 0; }
+    .pricing-card.featured .pricing-divider { border-color: rgba(255,255,255,0.2); }
+    .pricing-features { list-style: none; display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
+    .pricing-features li {
+      display: flex; align-items: center; gap: 10px;
+      font-size: 0.88rem; color: var(--dark-3);
+    }
+    .pricing-card.featured .pricing-features li { color: rgba(255,255,255,0.85); }
+    .pricing-features .check { color: var(--accent); font-size: 1rem; flex-shrink: 0; }
+    .pricing-card.featured .pricing-features .check { color: #a7f3d0; }
+    .btn-pricing {
+      width: 100%;
+      justify-content: center;
+      background: var(--primary-light);
+      color: var(--primary);
+    }
+    .btn-pricing:hover { background: var(--primary); color: white; }
+    .pricing-card.featured .btn-pricing { background: white; color: var(--primary); }
+    .pricing-card.featured .btn-pricing:hover { background: var(--dark); color: white; }
+
+    /* =================== FAQ =================== */
+    .faq { background: var(--light); }
+    .faq-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    .faq-list { display: flex; flex-direction: column; gap: 12px; }
+    .faq-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      overflow: hidden;
+      transition: border 0.2s;
+    }
+    .faq-item.open { border-color: var(--primary); }
+    .faq-question {
+      padding: 18px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      gap: 12px;
+      user-select: none;
+    }
+    .faq-question span { font-weight: 600; font-size: 0.92rem; color: var(--dark); }
+    .faq-icon {
+      width: 28px; height: 28px;
+      border-radius: 8px;
+      background: var(--primary-light);
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+      transition: 0.3s;
+      font-weight: 700;
+    }
+    .faq-item.open .faq-icon { background: var(--primary); color: white; transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; padding-bottom: 18px; }
+    .faq-answer p { font-size: 0.88rem; color: var(--mid); line-height: 1.65; }
+    .faq-contact {
+      background: var(--dark);
+      border-radius: 20px;
+      padding: 40px 36px;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      height: fit-content;
+    }
+    .faq-contact h3 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+    }
+    .faq-contact p { color: #94a3b8; font-size: 0.9rem; line-height: 1.6; }
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: 0.2s;
+      cursor: pointer;
+    }
+    .contact-method:hover { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.2); }
+    .contact-icon {
+      width: 40px; height: 40px;
+      background: var(--primary);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .contact-info .label { font-size: 0.78rem; color: #64748b; }
+    .contact-info .value { font-size: 0.92rem; font-weight: 600; color: white; }
+
+    /* =================== CTA SECTION =================== */
+    .cta-section {
+      background: linear-gradient(135deg, var(--primary) 0%, #0040CC 100%);
+      padding: 100px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-section::before {
+      content: '';
+      position: absolute;
+      top: -150px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 70%);
+    }
+    .cta-section::after {
+      content: '';
+      position: absolute;
+      bottom: -100px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(0,200,117,0.15) 0%, transparent 70%);
+    }
+    .cta-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+    .cta-section h2 {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: white;
+      letter-spacing: -1px;
+      line-height: 1.15;
+      margin-bottom: 20px;
+    }
+    .cta-section p { color: rgba(255,255,255,0.8); font-size: 1.05rem; margin-bottom: 36px; line-height: 1.6; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn-white { background: white; color: var(--primary); }
+    .btn-white:hover { background: var(--dark); color: white; }
+    .btn-ghost { background: rgba(255,255,255,0.12); color: white; border: 1.5px solid rgba(255,255,255,0.25); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.2); }
+
+    /* =================== FOOTER =================== */
+    footer {
+      background: var(--dark);
+      color: white;
+      padding: 72px 24px 32px;
+    }
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 56px;
+    }
+    .footer-brand .footer-logo {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .footer-brand .footer-logo span { color: var(--primary); }
+    .footer-brand p { color: #64748b; font-size: 0.88rem; line-height: 1.65; max-width: 260px; }
+    .footer-social { display: flex; gap: 10px; margin-top: 24px; }
+    .social-btn {
+      width: 38px; height: 38px;
+      background: #1e293b;
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    .social-btn:hover { background: var(--primary); }
+    .footer-col h4 { font-size: 0.85rem; font-weight: 700; margin-bottom: 16px; letter-spacing: 0.5px; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col li a { color: #64748b; font-size: 0.85rem; transition: color 0.2s; }
+    .footer-col li a:hover { color: white; }
+    .footer-bottom {
+      border-top: 1px solid #1e293b;
+      padding-top: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .footer-bottom p { color: #475569; font-size: 0.82rem; }
+    .footer-bottom-links { display: flex; gap: 20px; }
+    .footer-bottom-links a { color: #475569; font-size: 0.82rem; transition: color 0.2s; }
+    .footer-bottom-links a:hover { color: #94a3b8; }
+
+    /* =================== ANIMATIONS =================== */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: none; }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
+
+    /* =================== MOBILE NAV =================== */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      padding: 20px 24px;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 99;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      padding: 12px 16px;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--dark-3);
+      border-radius: 10px;
+      transition: 0.2s;
+    }
+    .mobile-menu a:hover { background: var(--primary-light); color: var(--primary); }
+    .mobile-menu .btn { margin-top: 8px; justify-content: center; }
+
+    /* =================== RESPONSIVE =================== */
+    @media (max-width: 1024px) {
+      .services-grid { grid-template-columns: repeat(2, 1fr); }
+      .reviews-grid { grid-template-columns: repeat(2, 1fr); }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin-left: auto; margin-right: auto; }
+      .pricing-card.featured { transform: none; }
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 72px 20px; }
+      .nav-links { display: none; }
+      .nav-cta .btn-outline { display: none; }
+      .hamburger { display: block; }
+      .hero-inner { grid-template-columns: 1fr; gap: 48px; padding: 60px 20px; }
+      .hero-visual { order: -1; }
+      .float-badge.badge-2 { display: none; }
+      .stats-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .stat-divider-v { display: none; }
+      .how-inner { grid-template-columns: 1fr; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .reviews-header { flex-direction: column; }
+      .faq-grid { grid-template-columns: 1fr; gap: 32px; }
+      .footer-top { grid-template-columns: 1fr; gap: 28px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { justify-content: center; }
+    }
+    @media (max-width: 480px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">
+        <div class="logo-dot"></div>
+        Rij<span>Pro</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#diensten">Diensten</a></li>
+        <li><a href="#hoe-het-werkt">Hoe het werkt</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#prijzen">Prijzen</a></li>
+        <li><a href="#faq">FAQ</a></li>
+      </ul>
+      <div class="nav-cta">
+        <a href="tel:0800-RIJPRO" class="btn btn-outline">📞 Bel ons</a>
+        <a href="#proefles" class="btn btn-primary">Boek proefles →</a>
+      </div>
+      <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#diensten" onclick="toggleMenu()">Diensten</a>
+    <a href="#hoe-het-werkt" onclick="toggleMenu()">Hoe het werkt</a>
+    <a href="#reviews" onclick="toggleMenu()">Reviews</a>
+    <a href="#prijzen" onclick="toggleMenu()">Prijzen</a>
+    <a href="#faq" onclick="toggleMenu()">FAQ</a>
+    <a href="#proefles" class="btn btn-primary" onclick="toggleMenu()">Boek proefles →</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge fade-up">
+          <span class="dot"></span>
+          #1 Rijschool in de regio · 4.9 ★ op Google
+        </div>
+        <h1 class="fade-up delay-1">
+          Rijbewijs halen?<br>
+          Wij maken het <span class="highlight">makkelijk</span>.
+        </h1>
+        <p class="hero-sub fade-up delay-2">
+          Professionele rijlessen op jouw tempo, met gecertificeerde instructeurs en een
+          slagingspercentage van 87%. Start vandaag nog met een gratis proefles.
+        </p>
+        <div class="hero-actions fade-up delay-3">
+          <a href="#proefles" class="btn btn-primary btn-xl">🚗 Boek gratis proefles</a>
+          <a href="#hoe-het-werkt" class="btn btn-outline btn-xl">Hoe werkt het?</a>
+        </div>
+        <div class="hero-trust fade-up delay-4">
+          <div class="stars">★★★★★</div>
+          <div class="trust-text">
+            <strong>4.9/5</strong> · 1.240+ reviews
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-text">
+            <strong>87%</strong> eerste keer geslaagd
+          </div>
+          <div class="trust-divider"></div>
+          <div class="trust-text">
+            <strong>15+</strong> jaar ervaring
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-visual fade-up delay-2">
+        <div class="float-badge badge-1">
+          <span class="badge-icon">🎉</span>
+          <span>Vandaag 3 mensen geslaagd!</span>
+        </div>
+        <div class="float-badge badge-2">
+          <span class="badge-icon">⚡</span>
+          <span>Snel starten mogelijk</span>
+        </div>
+        <div class="hero-card-main">
+          <div class="hero-img-placeholder">
+            <div class="hero-car-icon">🚗</div>
+            <div class="hero-road"></div>
+          </div>
+          <div class="hero-card-overlay">
+            <div class="stat">
+              <div class="num">87%</div>
+              <div class="lbl">Slagingspercentage</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <div class="num">5.000+</div>
+              <div class="lbl">Geslaagden</div>
+            </div>
+            <div class="stat-divider"></div>
+            <div class="stat">
+              <div class="num">4.9★</div>
+              <div class="lbl">Google rating</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stats-bar-inner">
+      <div class="stat-item fade-up">
+        <div class="num">5.000<span>+</span></div>
+        <div class="lbl">Tevreden leerlingen</div>
+      </div>
+      <div class="stat-divider-v"></div>
+      <div class="stat-item fade-up delay-1">
+        <div class="num">87<span>%</span></div>
+        <div class="lbl">Slagingspercentage</div>
+      </div>
+      <div class="stat-divider-v"></div>
+      <div class="stat-item fade-up delay-2">
+        <div class="num">15<span>+</span></div>
+        <div class="lbl">Jaar ervaring</div>
+      </div>
+      <div class="stat-divider-v"></div>
+      <div class="stat-item fade-up delay-3">
+        <div class="num">4.9<span>★</span></div>
+        <div class="lbl">Gemiddelde beoordeling</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="services" id="diensten">
+    <div class="container">
+      <div class="services-header">
+        <div>
+          <div class="section-label">Onze diensten</div>
+          <h2 class="section-title">Alles voor<br>jouw <span class="accent">rijbewijs</span></h2>
+          <p class="section-sub">Van autorijbewijs tot motorrijbewijs — wij bieden een compleet aanbod rijopleidingen voor iedere situatie.</p>
+        </div>
+        <a href="#proefles" class="btn btn-primary btn-lg fade-up">Gratis proefles →</a>
+      </div>
+      <div class="services-grid">
+        <div class="service-card fade-up">
+          <span class="service-badge">Populairste keuze</span>
+          <div class="service-icon">🚗</div>
+          <h3>Autorijbewijs (B)</h3>
+          <p>Leer autorijden met een ervaren instructeur. Flexibele lestijden, moderne auto's en een persoonlijk leerplan op jouw niveau.</p>
+          <div class="service-price">Vanaf €39,95/les →</div>
+        </div>
+        <div class="service-card fade-up delay-1">
+          <div class="service-icon">🏍️</div>
+          <h3>Motorrijbewijs (A)</h3>
+          <p>Theorie en praktijkrijlessen voor jouw motorrijbewijs. Volledig traject van A1 tot A, op jouw eigen tempo.</p>
+          <div class="service-price">Vanaf €69,95/les →</div>
+        </div>
+        <div class="service-card fade-up delay-2">
+          <div class="service-icon">⚡</div>
+          <h3>Intensief traject</h3>
+          <p>Rijbewijs in 2-4 weken? Met ons intensieve programma haal je snel je rijbewijs, inclusief theoriebegeleiding.</p>
+          <div class="service-price">Pakket vanaf €799 →</div>
+        </div>
+        <div class="service-card fade-up delay-1">
+          <div class="service-icon">📋</div>
+          <h3>Theorielessen</h3>
+          <p>Online en klassikale theoriepakketten met oefenexamens. Alles om het CBR-examen in één keer te halen.</p>
+          <div class="service-price">Pakket vanaf €49 →</div>
+        </div>
+        <div class="service-card fade-up delay-2">
+          <div class="service-icon">🔄</div>
+          <h3>Herexamen begeleiding</h3>
+          <p>Tweede kans? Geen stress. We analyseren je foutpunten en bereiden je gericht voor op het herexamen.</p>
+          <div class="service-price">Vanaf €39,95/les →</div>
+        </div>
+        <div class="service-card fade-up delay-3">
+          <div class="service-icon">🌍</div>
+          <h3>Rijles in uw taal</h3>
+          <p>Rijlessen beschikbaar in het Nederlands, Engels en Arabisch. Expats en internationale leerlingen zijn welkom!</p>
+          <div class="service-price">Vanaf €44,95/les →</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="hoe-het-werkt">
+    <div class="container">
+      <div class="how-inner">
+        <div>
+          <div class="section-label">Stap voor stap</div>
+          <h2 class="section-title">In 4 stappen<br>naar jouw <span class="accent">rijbewijs</span></h2>
+          <p class="section-sub" style="margin-bottom:40px">Van aanmelding tot rijbewijs — eenvoudig, snel en persoonlijk begeleid door onze instructeurs.</p>
+          <div class="steps">
+            <div class="step fade-up">
+              <div class="step-num">1</div>
+              <div class="step-content">
+                <h4>Gratis proefles</h4>
+                <p>Maak een afspraak voor een gratis proefles en leer je instructeur kennen. Geen verplichtingen.</p>
+              </div>
+            </div>
+            <div class="step fade-up delay-1">
+              <div class="step-num">2</div>
+              <div class="step-content">
+                <h4>Persoonlijk leerplan</h4>
+                <p>We stellen een leerplan op basis van jouw rijervaring, beschikbaarheid en doelen.</p>
+              </div>
+            </div>
+            <div class="step fade-up delay-2">
+              <div class="step-num">3</div>
+              <div class="step-content">
+                <h4>Rijlessen &amp; theorie</h4>
+                <p>Flexibele rijlessen gecombineerd met online theoriemateriaal. Jij bepaalt het tempo.</p>
+              </div>
+            </div>
+            <div class="step fade-up delay-3">
+              <div class="step-num">4</div>
+              <div class="step-content">
+                <h4>Geslaagd! 🎉</h4>
+                <p>We begeleiden je naar het CBR-examen en vieren jouw succes samen. Gemiddeld 87% slaagt!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="how-visual fade-up delay-1" id="proefles">
+          <div class="how-visual-content">
+            <h3>Plan je gratis proefles</h3>
+            <p>Geen verplichtingen. Maak kennis met onze instructeur en het rijden.</p>
+            <form class="proefles-form" onsubmit="submitForm(event)">
+              <div class="form-row">
+                <input type="text" class="form-input" placeholder="Voornaam" required />
+                <input type="text" class="form-input" placeholder="Achternaam" required />
+              </div>
+              <input type="tel" class="form-input" placeholder="Telefoonnummer" required />
+              <input type="email" class="form-input" placeholder="E-mailadres" required />
+              <select class="form-select form-input" required>
+                <option value="" disabled selected>Welk rijbewijs?</option>
+                <option>Autorijbewijs (B)</option>
+                <option>Motorrijbewijs (A)</option>
+                <option>Intensief traject</option>
+                <option>Anders</option>
+              </select>
+              <button type="submit" class="btn btn-accent btn-lg" style="justify-content:center;width:100%;margin-top:4px;">
+                ✓ Plan gratis proefles
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="container">
+      <div class="reviews-header">
+        <div>
+          <div class="section-label">Wat leerlingen zeggen</div>
+          <h2 class="section-title">1.240+ tevreden<br><span class="accent">leerlingen</span></h2>
+        </div>
+        <div class="reviews-score fade-up">
+          <div class="score-big">4.9</div>
+          <div class="score-details">
+            <div class="stars">★★★★★</div>
+            <p>Op basis van 1.240 reviews</p>
+            <p style="margin-top:2px;color:#64748b;font-size:0.75rem;">Google · Facebook · Trustpilot</p>
+          </div>
+        </div>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card fade-up">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0057FF,#00C875)">S</div>
+            <div class="review-meta">
+              <div class="name">Selin K.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">2 weken geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"Ik had al twee keer gefaald bij een andere rijschool. Bij RijPro begreep mijn instructeur precies wat ik nodig had. Na 12 lessen was ik in één keer geslaagd! Echt een top rijschool."</p>
+          <span class="review-tag">Autorijbewijs (B)</span>
+        </div>
+        <div class="review-card fade-up delay-1">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#7c3aed,#0057FF)">M</div>
+            <div class="review-meta">
+              <div class="name">Mohammed A.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">1 maand geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"Super geduldig en professioneel. Ik volgde het intensieve traject en haalde mijn rijbewijs in 3 weken. De online theorie was duidelijk en de instructeur nam altijd de tijd."</p>
+          <span class="review-tag">Intensief traject</span>
+        </div>
+        <div class="review-card fade-up delay-2">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#f59e0b,#ef4444)">L</div>
+            <div class="review-meta">
+              <div class="name">Laura de V.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">3 weken geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"Flexibele planning en een super fijne instructeur. Hij maakte me kalm en zeker voor het examen. Eerste keer geslaagd! Ik raad RijPro aan iedereen aan."</p>
+          <span class="review-tag">Autorijbewijs (B)</span>
+        </div>
+        <div class="review-card fade-up">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#00C875,#0057FF)">J</div>
+            <div class="review-meta">
+              <div class="name">Joris H.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">5 weken geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"Als expat was ik blij dat rijlessen ook in het Engels beschikbaar zijn. Alles was duidelijk uitgelegd. In 14 lessen geslaagd. Professioneel en betaalbaar!"</p>
+          <span class="review-tag">Expat rijles</span>
+        </div>
+        <div class="review-card fade-up delay-1">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#e11d48,#7c3aed)">F</div>
+            <div class="review-meta">
+              <div class="name">Fatima B.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">2 maanden geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"De instructeur was heel geduldig en begrijpend. De lessen waren gestructureerd maar ook ontspannen. Ik had echt het gevoel dat hij wilde dat ik slaagde. Aanrader!"</p>
+          <span class="review-tag">Autorijbewijs (B)</span>
+        </div>
+        <div class="review-card fade-up delay-2">
+          <div class="review-top">
+            <div class="review-avatar" style="background:linear-gradient(135deg,#0891b2,#00C875)">R</div>
+            <div class="review-meta">
+              <div class="name">Roel S.</div>
+              <div class="stars">★★★★★</div>
+              <div class="date">1 maand geleden</div>
+            </div>
+          </div>
+          <p class="review-text">"Motorrijbewijs gehaald op mijn 30e! Dacht dat het heel moeilijk zou zijn, maar met de goede begeleiding viel het reuze mee. Top instructeur en prettige sfeer."</p>
+          <span class="review-tag">Motorrijbewijs (A)</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="prijzen">
+    <div class="container">
+      <div class="pricing-inner">
+        <div class="section-label" style="justify-content:center">Transparante tarieven</div>
+        <h2 class="section-title" style="text-align:center">Eerlijke <span class="accent">prijzen</span>,<br>geen verrassingen</h2>
+        <p class="section-sub" style="margin:0 auto;text-align:center">Kies het pakket dat bij jou past. Alles inclusief — geen verborgen kosten.</p>
+        <div class="pricing-grid">
+          <div class="pricing-card fade-up">
+            <div class="pricing-plan">Starter</div>
+            <div class="pricing-price"><sup>€</sup>39<small style="font-size:1.2rem;letter-spacing:0">,95</small></div>
+            <div class="pricing-per">per rijles (60 min)</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> Gecertificeerde instructeur</li>
+              <li><span class="check">✓</span> Moderne leswagen</li>
+              <li><span class="check">✓</span> Gratis proefles</li>
+              <li><span class="check">✓</span> Flexibele tijden</li>
+              <li><span class="check">✓</span> Progressierapportage</li>
+            </ul>
+            <a href="#proefles" class="btn btn-pricing">Boek proefles →</a>
+          </div>
+
+          <div class="pricing-card featured fade-up delay-1">
+            <div class="pricing-popular">Meest gekozen</div>
+            <div class="pricing-plan">Pakket 20 lessen</div>
+            <div class="pricing-price"><sup>€</sup>699</div>
+            <div class="pricing-per">totaal (€34,95 per les)</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> 20 rijlessen van 60 min</li>
+              <li><span class="check">✓</span> Gratis theoriepakket</li>
+              <li><span class="check">✓</span> CBR-aanmelding inbegrepen</li>
+              <li><span class="check">✓</span> WhatsApp begeleiding</li>
+              <li><span class="check">✓</span> Examengarantie bij herexamen</li>
+              <li><span class="check">✓</span> Lesauto bij examen</li>
+            </ul>
+            <a href="#proefles" class="btn btn-pricing">Start direct →</a>
+          </div>
+
+          <div class="pricing-card fade-up delay-2">
+            <div class="pricing-plan">Intensief</div>
+            <div class="pricing-price"><sup>€</sup>799</div>
+            <div class="pricing-per">totaal pakket (2-4 weken)</div>
+            <hr class="pricing-divider">
+            <ul class="pricing-features">
+              <li><span class="check">✓</span> Dagelijkse rijlessen</li>
+              <li><span class="check">✓</span> Theorie + examen</li>
+              <li><span class="check">✓</span> Snelst mogelijke planning</li>
+              <li><span class="check">✓</span> Persoonlijke coach</li>
+              <li><span class="check">✓</span> Examengarantie</li>
+            </ul>
+            <a href="#proefles" class="btn btn-pricing">Meer info →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <div class="section-label">Veelgestelde vragen</div>
+      <h2 class="section-title">Heb je een <span class="accent">vraag?</span></h2>
+      <div class="faq-grid">
+        <div class="faq-list">
+          <div class="faq-item fade-up" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Hoe lang duurt het om rijbewijs te halen?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Gemiddeld halen onze leerlingen hun rijbewijs na 20-25 lessen. Met ons intensieve traject kan dit in 2-4 weken. Het hangt ook af van je eerder rijervaring en leersnelheid.</p></div>
+          </div>
+          <div class="faq-item fade-up delay-1" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Wat is inbegrepen bij de gratis proefles?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Bij de gratis proefles (45 minuten) maak je kennis met je instructeur, bespreken we je doelen en rijexperience, en rijd je voor de eerste keer mee. Geen verplichtingen.</p></div>
+          </div>
+          <div class="faq-item fade-up delay-2" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Kan ik rijlessen annuleren of verzetten?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Ja, je kunt lessen tot 48 uur van tevoren gratis annuleren of verzetten. Bij kortere annulering wordt 50% van de leskosten in rekening gebracht.</p></div>
+          </div>
+          <div class="faq-item fade-up delay-3" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Rijden jullie ook in het weekend?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Ja! We bieden rijlessen 7 dagen per week aan, inclusief avonden en weekenden. Zo kun jij rijden wanneer het jou uitkomt.</p></div>
+          </div>
+          <div class="faq-item fade-up" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Wat als ik zak voor het rijexamen?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Geen paniek! Met ons 20-lessenpakket krijg je een examengarantie: zakken? Dan krijg je extra bijlessen en een nieuwe examenkans zonder meerprijs.</p></div>
+          </div>
+          <div class="faq-item fade-up delay-1" onclick="toggleFaq(this)">
+            <div class="faq-question"><span>Welke auto's gebruikt RijPro?</span><div class="faq-icon">+</div></div>
+            <div class="faq-answer"><p>Wij rijden in moderne, goed onderhouden auto's met dubbele bediening. Momenteel rijden we met de Volkswagen Polo en Toyota Yaris — comfortabel en veilig.</p></div>
+          </div>
+        </div>
+        <div class="faq-contact fade-up delay-1">
+          <h3>Nog een vraag?</h3>
+          <p>Staat je vraag er niet bij? Neem gerust contact met ons op — we helpen je graag verder!</p>
+          <div class="contact-method">
+            <div class="contact-icon">📞</div>
+            <div class="contact-info">
+              <div class="label">Bel ons op</div>
+              <div class="value">06 - 12 34 56 78</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-icon">💬</div>
+            <div class="contact-info">
+              <div class="label">WhatsApp</div>
+              <div class="value">Stuur een berichtje</div>
+            </div>
+          </div>
+          <div class="contact-method">
+            <div class="contact-icon">✉️</div>
+            <div class="contact-info">
+              <div class="label">E-mail</div>
+              <div class="value">info@rijpro.nl</div>
+            </div>
+          </div>
+          <a href="#proefles" class="btn btn-primary btn-lg" style="justify-content:center;margin-top:8px;">Plan gratis proefles →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <h2>Klaar om te starten<br>met rijden?</h2>
+      <p>Plan vandaag nog je gratis proefles. Geen verplichtingen, geen kosten — gewoon jij en je instructeur op de weg.</p>
+      <div class="cta-actions">
+        <a href="#proefles" class="btn btn-white btn-xl">🚗 Boek gratis proefles</a>
+        <a href="tel:06-12345678" class="btn btn-ghost btn-xl">📞 Bel ons direct</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <div class="footer-logo">Rij<span>Pro</span></div>
+          <p>Jouw betrouwbare rijschool voor het behalen van je rijbewijs. Professioneel, persoonlijk en resultaatgericht.</p>
+          <div class="footer-social">
+            <div class="social-btn">f</div>
+            <div class="social-btn">in</div>
+            <div class="social-btn">ig</div>
+            <div class="social-btn">g</div>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Diensten</h4>
+          <ul>
+            <li><a href="#">Autorijbewijs (B)</a></li>
+            <li><a href="#">Motorrijbewijs (A)</a></li>
+            <li><a href="#">Intensief traject</a></li>
+            <li><a href="#">Theorielessen</a></li>
+            <li><a href="#">Rijles in uw taal</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Rijschool</h4>
+          <ul>
+            <li><a href="#">Over ons</a></li>
+            <li><a href="#">Onze instructeurs</a></li>
+            <li><a href="#">Reviews</a></li>
+            <li><a href="#">Prijzen</a></li>
+            <li><a href="#">Slagingspercentages</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="#">06 - 12 34 56 78</a></li>
+            <li><a href="#">info@rijpro.nl</a></li>
+            <li><a href="#">Stadsplein 1, Den Haag</a></li>
+            <li><a href="#">Ma–Za 08:00–20:00</a></li>
+            <li><a href="#">Zo 10:00–18:00</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 RijPro Rijschool. Alle rechten voorbehouden.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacybeleid</a>
+          <a href="#">Algemene voorwaarden</a>
+          <a href="#">Sitemap</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Mobile menu
+    function toggleMenu() {
+      document.getElementById('mobileMenu').classList.toggle('open');
+    }
+
+    // FAQ accordion
+    function toggleFaq(item) {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    }
+
+    // Form submit
+    function submitForm(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('button[type=submit]');
+      btn.textContent = '✓ Aanvraag verstuurd!';
+      btn.style.background = '#00C875';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.textContent = '✓ Plan gratis proefles';
+        btn.style.background = '';
+        btn.disabled = false;
+        e.target.reset();
+      }, 3000);
+    }
+
+    // Nav scroll effect
+    window.addEventListener('scroll', () => {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 20) {
+        nav.style.background = 'rgba(255,255,255,0.97)';
+        nav.style.boxShadow = '0 2px 24px rgba(0,0,0,0.08)';
+      } else {
+        nav.style.background = 'rgba(255,255,255,0.92)';
+        nav.style.boxShadow = 'none';
+      }
+    });
+
+    // Counter animation
+    function animateCount(el, target, suffix) {
+      let current = 0;
+      const step = target / 60;
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(timer); }
+        el.textContent = (Number.isInteger(target) ? Math.floor(current) : current.toFixed(1)) + suffix;
+      }, 16);
+    }
+    const statsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          statsObserver.unobserve(e.target);
+          const el = e.target;
+          const text = el.textContent;
+          if (text.includes('5.000')) animateCount(el.querySelector('.num') || el, 5000, '+');
+          if (text.includes('87')) animateCount(el.querySelector('.num') || el, 87, '%');
+          if (text.includes('15')) animateCount(el.querySelector('.num') || el, 15, '+');
+          if (text.includes('4.9')) animateCount(el.querySelector('.num') || el, 4.9, '★');
+        }
+      });
+    }, { threshold: 0.5 });
+    document.querySelectorAll('.stat-item').forEach(el => statsObserver.observe(el));
+  </script>
+</body>
+</html>
